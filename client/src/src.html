@@ -1,0 +1,32 @@
+<html>
+<head>
+</head>
+<body>
+
+<script src="Scripts/jquery-1.6.4.js"></script>
+<script src="Scripts/jquery.signalR-2.1.0.js"></script>
+<script src="http://localhost:8928/api/signalr/f9cdeb75-62e4-4671-b853-8ef41bc3c092/131838200000850673/1e3420a7-344f-4aaa-b8fb-f73ac3582b72/signalr/hubs"></script>
+
+<script>   
+
+    $.connection.hub.logging = true;
+    $.connection.hub.url = 'http://localhost:8928/api/signalr/f9cdeb75-62e4-4671-b853-8ef41bc3c092/131838200000850673/1e3420a7-344f-4aaa-b8fb-f73ac3582b72/signalr';
+    
+    var test = $.connection.testNotificationHub;
+
+    $.extend(test.client, {
+        broadcast: function (msg) {console.log(msg)}
+    });
+
+    $.connection.hub.start()
+        .done(function() {
+            console.log($.connection.hub.id);
+        })
+        .fail(function(){ 
+            console.log('Could not connect'); 
+        });       
+    
+</script>
+
+</body>
+</html> 
